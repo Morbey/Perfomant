@@ -1,0 +1,28 @@
+{
+    "name": "reconciliation-agent",
+    "version": "1.0.0",
+    "description": "MCP Reconciliation Agent Phase 2",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node build/index.js",
+        "test": "jest"
+    },
+    "dependencies": {
+        "date-fns": "^2.30.0",
+        "lodash": "^4.17.21",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.14",
+        "@types/lodash": "^4.14.191",
+        "@types/node": "^18.15.11",
+        "@types/uuid": "^9.0.1",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.1.2",
+        "typescript": "^5.0.4"
+    },
+    "overrides": {
+        "glob": "^10.3.10"
+    }
+}
