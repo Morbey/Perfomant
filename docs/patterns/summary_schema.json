@@ -1,0 +1,31 @@
+{
+  "task": "short description of what the user asked",
+  "context": {
+    "domain": "finance | automation | data | browser | mixed",
+    "timeframe": "if relevant",
+    "entities": [
+      "list of items involved"
+    ]
+  },
+  "inputs_summary": {
+    "source_data": "brief list of where the data came from (MCP tools)",
+    "key_metrics": {
+      "high_level": [
+        "metric1",
+        "metric2"
+      ],
+      "per_entity": {
+        "ENTITY_NAME": {
+          "metric_a": "value",
+          "metric_b": "value",
+          "metric_c": "value"
+        }
+      }
+    },
+    "anomalies": [
+      "optional list of issues detected"
+    ],
+    "notes": "anything relevant but minimal"
+  },
+  "expected_output_format": "text | list | table | json"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "performant-docs",
+  "version": "0.1.0",
+  "description": "MCP server for accessing Performant project documentation",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "performant-docs": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "watch": "tsc --watch",
+    "test": "npm run build && node build/test/test_logic.js && node build/test/test_read_doc.js && node build/test/test_root_detection.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "glob": "^10.3.10",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}

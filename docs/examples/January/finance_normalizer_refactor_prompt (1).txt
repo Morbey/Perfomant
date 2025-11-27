@@ -1,0 +1,87 @@
+Quero que refactors e evoluas o módulo `finance-normalizer` que já criaste, mantendo Node + TypeScript, mas tornando-o mais robusto, extensível e alinhado com os exemplos reais de extratos bancários e “fatura por conta” (comissões de banco).
+
+Contexto importante:
+- Já tens um módulo `finance-normalizer` com:
+  - `NormalisedTransaction`
+  - `normalizeTransactionsFromCsv(csvContent: string, options: { sourceFile?: string; defaultCurrency?: string })`
+  - testes em Vitest.
+- Os extratos reais que vou usar vêm de vários bancos e formatos.
+- No caso da empresa, neste momento uso a CGD:
+  - Extrato de conta à ordem: colunas “Data Mov.”, “Data Valor”, “Descrição”, “Valor”, “Saldo Contabilístico” (valores negativos para débitos e positivos para créditos).
+  - “Fatura por conta” de comissões: linhas como  
+    `2025-01-03 COMISSAO SERVICO INTERBANCARIO IS 0,29 4,0000% 0,01 0,30 EUR`  
+    (data, descrição, tipo de imposto, base comissão, taxa, imposto, total, moeda).
+
+## 1. Melhorias ao normalizador de extratos CSV
+
+Mantém o schema de `NormalisedTransaction`, mas ajusta-o ligeiramente para refletir o design do CoordinatorAgent:
+
+- transaction_id: string (UUID v4)
+- date: string | null (ISO 8601, "YYYY-MM-DD"; se não conseguir parsear, fica null e adiciona nota)
+- amount: number (sempre POSITIVO)
+- direction: 'credit' | 'debit'
+- currency: string (ISO 4217, ex. "EUR")
+- counterparty?: string | null
+- description: string
+- raw_source_file?: string
+- raw_line_number?: number
+- normalisation_notes?: string[]
+
+Refactor da função principal:
+
+```
+normalizeTransactionsFromCsv(
+  csvContent: string,
+  options: {
+    sourceFile?: string;
+    defaultCurrency?: string; // ex. "EUR"
+    bankProfile?: string;     // ex. "CGD", "AnotherBank" (extensível no futuro)
+  }
+): NormalisedTransaction[]
+```
+
+Requisitos de implementação:
+
+1. Auto-detetar delimitador.
+2. Mapeamento flexível de cabeçalhos multi-banco.
+3. Parsing robusto de datas com parseDate().
+4. Lógica refinada de montante/direction.
+5. Gestão de moeda com fallback e notas.
+6. Remover `any` e usar tipos fortes.
+7. Novos testes para todas as combinações.
+
+## 2. Suporte a “fatura por conta”
+
+Define um novo tipo:
+
+```
+export interface BankCommissionLine {
+  id: string;
+  date: string | null;
+  description: string;
+  taxType?: string;
+  baseAmount: number;
+  taxRate?: number | null;
+  taxAmount?: number;
+  totalAmount: number;
+  currency: string;
+  raw_source_file?: string;
+  raw_line_number?: number;
+  normalisation_notes?: string[];
+}
+```
+
+Cria também:
+
+```
+normalizeBankCommissionLines(
+  rows: Array<Record<string,string>>,
+  options: { sourceFile?: string; defaultCurrency?: string }
+): BankCommissionLine[]
+```
+
+## 3. Organização
+
+- Mantém o módulo como library pura.
+- Atualiza testes para refletir novos helpers.
+- Explica no final como o FinanceAgent deve usar estas funções.

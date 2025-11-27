@@ -1,0 +1,24 @@
+{
+    "name": "@performant/bank-matching",
+    "version": "0.0.1",
+    "description": "Library for Bank Matching Agent Phase 1 logic",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "test": "vitest run"
+    },
+    "keywords": [
+        "finance",
+        "matching",
+        "agent"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "typescript": "^5.0.0",
+        "vitest": "^1.0.0"
+    }
+}
