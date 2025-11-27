@@ -5,11 +5,11 @@
   "private": true,
   "type": "module",
   "bin": {
-    "performant-docs": "./build/index.js"
+    "performant-docs": "./build/src/index.js"
   },
   "scripts": {
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "node build/src/index.js",
     "watch": "tsc --watch",
     "test": "npm run build && node build/test/test_logic.js && node build/test/test_read_doc.js && node build/test/test_root_detection.js"
   },
