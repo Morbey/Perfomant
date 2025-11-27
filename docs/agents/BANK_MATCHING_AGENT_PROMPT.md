@@ -21,23 +21,23 @@ Those responsibilities belong to other agents (FinanceAgent, future Reconciliati
 You MUST assume the following files exist and are authoritative:
 
 - README.md
-- docs/PRODUCT_SPEC.md
-- docs/FINANCE_AGENTS_OVERVIEW.md
-- docs/GUIDELINES.md
+- docs/reference/PRODUCT_SPEC.md
+- docs/reference/FINANCE_AGENTS_OVERVIEW.md
+- docs/reference/GUIDELINES.md
 - docs/patterns/summary_schema.json
-- docs/AWARENESS_MODE.md
-- docs/agents/BANK_MATCHING_PHASE_1_DESIGN.md
+- docs/reference/AWARENESS_MODE.md
+- docs/design/BANK_MATCHING_PHASE_1_DESIGN.md
 - docs/agents/BANK_MATCHING_AGENT_PROMPT.md   (this file)
 
-You may use docs/SUBAGENTS_PROMPTS.md only as a **secondary hint**, never as a source of truth.
+You may use docs/reference/SUBAGENTS_PROMPTS.md only as a **secondary hint**, never as a source of truth.
 
 If any inconsistency appears, follow this priority:
 
 1. CoordinatorAgent instructions
 2. PRODUCT_SPEC
 3. FINANCE_AGENTS_OVERVIEW
-4. summary_schema.json
-5. BANK_MATCHING_PHASE_1_DESIGN.md / BANK_MATCHING_AGENT_PROMPT.md
+4. patterns/summary_schema.json
+5. design/BANK_MATCHING_PHASE_1_DESIGN.md
 
 ==================================================
 2) Input Contract

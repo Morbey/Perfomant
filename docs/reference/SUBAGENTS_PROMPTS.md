@@ -3,7 +3,7 @@
 All sub-agents in the Performant ecosystem share the following obligations:
 - Use MCP tools for heavy data work (fetching, parsing, scraping, file I/O).
 - Avoid sending raw, verbose data directly to the language model.
-- Whenever possible, return results using or compatible with the shared JSON summary schema defined in `patterns/summary_schema.json`.
+- Whenever possible, return results using or compatible with the shared JSON summary schema defined in `docs/patterns/summary_schema.json`.
 
 ## Automation Agent
 
