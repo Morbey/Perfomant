@@ -4,7 +4,9 @@ export function apply_rule(
     transaction: NormalisedTransaction,
     document: NormalisedDocument,
     prefs: MatchingPrefs
-): { accept: boolean; confidence_delta: number; trace?: string } {
-    // TODO: Implement AMOUNT_STRICT logic
-    return { accept: true, confidence_delta: 0 };
+): { accept: boolean; confidenceDelta: number; trace: string[] } {
+    const accept = transaction.amount === document.total_amount;
+    const confidenceDelta = accept ? 0 : 0;
+    const trace = ['AMOUNT_STRICT'];
+    return { accept, confidenceDelta, trace };
 }
