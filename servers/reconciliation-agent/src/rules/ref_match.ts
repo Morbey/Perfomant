@@ -13,6 +13,6 @@ export function apply_rule(
     const desc = transaction.description?.toLowerCase() ?? '';
     const counter = transaction.counterparty?.toLowerCase() ?? '';
     const found = desc.includes(ref) || counter.includes(ref);
-    const confidenceDelta = found ? 0.5 : 0;
+    const confidenceDelta = found ? 0.8 : 0;
     return { accept: true, confidenceDelta, trace };
 }

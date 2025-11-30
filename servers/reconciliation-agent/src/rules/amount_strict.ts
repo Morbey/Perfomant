@@ -6,7 +6,7 @@ export function apply_rule(
     prefs: MatchingPrefs
 ): { accept: boolean; confidenceDelta: number; trace: string[] } {
     const accept = transaction.amount === document.total_amount;
-    const confidenceDelta = accept ? 0 : 0;
+    const confidenceDelta = accept ? 0.5 : 0;
     const trace = ['AMOUNT_STRICT'];
     return { accept, confidenceDelta, trace };
 }

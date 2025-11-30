@@ -27,6 +27,6 @@ export function apply_rule(
         windowEnd = issueDate + tolerance;
     }
     const accept = !isNaN(txnDate) && txnDate >= windowStart && txnDate <= windowEnd;
-    const confidenceDelta = accept ? 0 : -0.5;
+    const confidenceDelta = accept ? 0.3 : -0.5;
     return { accept, confidenceDelta, trace };
 }
